@@ -15,9 +15,13 @@ public class Ex1 {
 		// Calendar클래스의 자식 클래스 인스턴스는 만들 수 있음
 		// 프로그램이 구동되는 시스템의 국가와 지역설정을 확인해서
 		// 해당 시스템에 맞는 날짜를 핸들링 할 수 있는 클래스의 인스턴스가 반환된다.
-		
+		// 그래고리력, 불력?
 		Calendar calendar = Calendar.getInstance();
 		
+		calendar.setTime(date);
+		
+		Date d1 = new Date(calendar.getTimeInMillis());
+		Date d2 = calendar.getTime();
 	}
 
 }

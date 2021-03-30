@@ -34,7 +34,10 @@ public class Ex3 {
 	static void makeException() throws MyException{
 		System.out.println("makeException 실행");
 		
-		throw new MyException("내가 만든 예외 발생");
+		if(turn) {
+			throw new MyException("내가 만든 예외 발생");
+		}
+			
 		
 	}
 	public static void main(String[] args) {
