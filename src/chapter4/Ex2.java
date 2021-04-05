@@ -56,7 +56,31 @@ public class Ex2 {
 		arrayList.remove(4);
 		System.out.println(arrayList);
 		
+		Passenger passenger = passengerList.get(2);
+		System.out.println(passenger.getName());
+		System.out.println(passenger.getTel());
+		System.out.println(passenger.getSeat());
 		
+		System.out.println(passengerList.isEmpty());
+		
+		// 컬렉션 프레임워크에 들어있는 데이터의 개수를 반환
+		System.out.println(passengerList.size());
+		
+		// i가 0으로 시작해서 로 끝난다.
+		// 이게 머서ㄴ 말이고
+		for (int i = 0; i < passengerList.size(); i++) {
+			System.out.println(passengerList.get(i));
+		}
+		
+		// 향상된 for문 -> for each문
+		for (Passenger p : passengerList) {
+			System.out.println(p);
+		} // end for
+		
+		int[] arr = {1, 2, 3, 4, 5};
+		for (int i : arr) {
+			System.out.print(i+" ");
+		}
 	}
 
 }
