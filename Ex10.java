@@ -1,43 +1,58 @@
-package chapter8;
+package chapter9;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.File;
+import java.util.Scanner;
 
 public class Ex10 {
-
+	// 파일 핸들링 (삭제)
 	public static void main(String[] args) {
-		FileReader fr = null;
-		BufferedReader br = null;
+		Scanner scanf = new Scanner(System.in);
 		
-		try {
-			fr = new FileReader("Ex10.java");
-			br = new BufferedReader(fr);
+		System.out.println("===== [ 사용법 ] =====");
+		System.out.println("경로: (디렉토리 또는 파일의 경로 입력)");
+		System.out.println("이름: (삭제할 파일을 이름)");
+		System.out.println("프로그램 종료 -> exit");
+		
+		while(true) {
+			System.out.println("경로: ");
+			String path = scanf.next();
 			
-			String line = "";
-			for (int i = 1; line != null; i++) {
-				line = br.readLine(); // 보조 스트림이 제공하는 readLine 메서드. \n을 만나기 전까지 만나는 데이터를 한 줄에 다 담아서 가져온다
+			System.out.println("이름: ");
+			String name = scanf.next();
+			
+			if(path.equals("exit")) {
+				System.out.println("프로그램 종료");
+				break;
+			}
+			
+			File file = new File(path);
+			File[] files = file.listFiles();
+			
+			boolean isDelete = deleteFile(files, name);
+			if(isDelete) {
+				System.out.println(name + "을(를) 삭제했습니다.");
+			}else {
+				System.out.println(name+"을(를) 삭제하지 못했습니다");
 				
-				System.out.println(i + ":" + line); // 줄 수: 줄 내용 형식으로 출력
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				br.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			try {
-				fr.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			
 		}
+
+	}// end main
 	
+	public static boolean deleteFile(File[] files, String name) {
+		boolean result = false;
+		
+		for (File f : files) {
+			if(f.isFile()) {
+				String filename = f.getName();
+				
+				if(filename.equals(name)) {
+					result = f.delete();
+				}// end if
+			}// end if
+		}// end for
+		return result;
 	}
 
 }
